@@ -60,6 +60,7 @@ public class PhotosAdapter extends BaseAdapter {
          * R.layout.item_gridview_photo
          * */
         /****/
+        photoHolder.imageView.setImageResource(R.mipmap.ic_launcher);
         return convertView;
     }
 }

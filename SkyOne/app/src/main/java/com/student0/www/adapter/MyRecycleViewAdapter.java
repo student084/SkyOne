@@ -38,6 +38,9 @@ public class MyRecycleViewAdapter extends RecyclerView.Adapter {
         return new DateAndPhotoHolder(layoutInflater.inflate(R.layout.item_date_and_photos, parent, false));
     }
 
+    //数据匹配
+    //根据日期判断，该处会自动调用DateAndPhotoHolder
+    //并联系R.layout.item_date_and_photos
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         ((DateAndPhotoHolder)(holder)).bindHolder(list.get(position),context);

@@ -10,10 +10,9 @@
         android:layout_height="wrap_content"
         android:text="2017-02-23"
         android:textAlignment="center" />
-<GridView
+<com.student0.www.view.FlowLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/id_dateAndPhoto_gridView"
-    android:numColumns="3">
-</GridView>
+    android:layout_height="wrap_content">
+
+</com.student0.www.view.FlowLayout>
 </LinearLayout>
