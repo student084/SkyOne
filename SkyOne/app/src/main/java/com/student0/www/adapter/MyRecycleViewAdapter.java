@@ -16,16 +16,22 @@ import java.util.List;
  * Created by willj on 2017/2/23.
  */
 
-public class DatePhotosAdapter extends RecyclerView.Adapter {
+public class MyRecycleViewAdapter extends RecyclerView.Adapter {
 
     private LayoutInflater layoutInflater;
     private List<PerDatePhotos> list = new ArrayList<>();
     private Context context;
-    public DatePhotosAdapter(Context context, List<PerDatePhotos> list) {
-        this.list = list;
+    public MyRecycleViewAdapter(Context context) {
         this.layoutInflater = LayoutInflater.from(context);
         this.context = context;
     }
+
+    public void AddList(List<PerDatePhotos> datas){
+        for (int i = 0; i < datas.size(); i ++){
+            list.add(datas.get(i));
+        }
+    }
+
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

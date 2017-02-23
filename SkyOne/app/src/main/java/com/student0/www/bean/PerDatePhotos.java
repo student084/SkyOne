@@ -14,13 +14,13 @@ import java.util.List;
  */
 
 public class PerDatePhotos {
-    private String data;
+    private String date;
     private int batch;
     private List<Photo> photos;
 
-    public PerDatePhotos(int batch, String data, List<Photo> photos) {
+    public PerDatePhotos(int batch, String date, List<Photo> photos) {
         this.batch = batch;
-        this.data = data;
+        this.date = date;
         this.photos = photos;
     }
 
@@ -29,7 +29,7 @@ public class PerDatePhotos {
     }
 
     public String getData() {
-        return data;
+        return date;
     }
 
     public List<Photo> getPhotos() {

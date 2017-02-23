@@ -16,7 +16,6 @@ import android.widget.TextView;
  */
 
 public class ViewPagerIndicator extends LinearLayout {
-    private static final int COUNT_DEFAULT_TAB = 4;
     private static final int COLOR_TEXT_NORMAL = 0x77FFFFFF;
     private static final int COLOR_TEXT_HIGHLIGHT = 0XFFFFFFFF;
 
@@ -91,14 +90,14 @@ public class ViewPagerIndicator extends LinearLayout {
         mTranslationX = (int) (position  * tabWidth + positionOffset * tabWidth);
         View view = getChildAt(position);
         if (view instanceof TextView){
-            resetTextViewColor();
+//            resetTextViewColor();
             ((TextView)view).setTextColor(COLOR_TEXT_HIGHLIGHT);
         }
         //repainting
         invalidate();
     }
     //重置子控件颜色
-  private void resetTextViewColor(){
+ public void resetTextViewColor(){
         for(int i = 0; i < getChildCount(); i ++){
             View view = getChildAt(i);
             if (view instanceof TextView){

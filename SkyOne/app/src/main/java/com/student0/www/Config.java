@@ -8,4 +8,5 @@ public class Config {
     public final static String TABLE_PHOTOS = "table photos";
     public final static String TABLE_FRIENDS  = "table friends";
     public final static String TABLE_SHARES = "table shares";
+    public final static String BOUND_TITLE = "title";
 }

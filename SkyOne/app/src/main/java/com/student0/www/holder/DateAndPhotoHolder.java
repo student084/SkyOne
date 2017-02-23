@@ -6,10 +6,8 @@ import android.view.View;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import com.student0.www.adapter.DatePhotosAdapter;
 import com.student0.www.adapter.PhotosAdapter;
 import com.student0.www.bean.PerDatePhotos;
-import com.student0.www.skyone.MainActivity;
 import com.student0.www.skyone.R;
 
 /**
