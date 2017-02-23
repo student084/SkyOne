@@ -1,17 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.student0.www.skyone.MainActivity">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    tools:context="com.student0.www.skyone.MainActivity"
+    android:orientation="vertical">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="#1497db">
+    <ImageView
+        android:layout_marginLeft="20dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:background="@mipmap/head"
+        android:adjustViewBounds="true"/>
+    <ImageButton
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:background="@mipmap/countdown"/>
 </RelativeLayout>
+    <android.support.v4.view.ViewPager
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/view_page">
+
+    </android.support.v4.view.ViewPager>
+    <com.student0.www.view.ViewPagerIndicator
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/id_indicator"
+        android:background="@mipmap/title_bar_bg_one_row"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="@string/title_photos"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="@string/title_friend"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="@string/title_shares"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:gravity="center"/>
+    </com.student0.www.view.ViewPagerIndicator>
+</LinearLayout>
