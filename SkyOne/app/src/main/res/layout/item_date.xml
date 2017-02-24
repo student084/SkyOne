@@ -7,6 +7,6 @@
         android:id="@+id/id_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="2017-02-23"
+        android:layout_marginBottom="10dp"
         android:textAlignment="center" />
 </LinearLayout>

@@ -8,9 +8,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 
 import com.student0.www.adapter.MyFragmentPagerAdapter;
-import com.student0.www.fragment.FriendsFragment;
+import com.student0.www.fragment.CameraFragment;
 import com.student0.www.fragment.PhotosFragment;
-import com.student0.www.fragment.SharesFragment;
+import com.student0.www.fragment.TempFragment;
 import com.student0.www.view.ViewPagerIndicator;
 
 import java.util.ArrayList;
@@ -67,9 +67,9 @@ public class MainActivity extends FragmentActivity {
     private void initDatas() {
         //The page's order
         //Please not change before sure
+        fragmentList.add(new CameraFragment());
+        fragmentList.add(new TempFragment());
         fragmentList.add(new PhotosFragment());
-        fragmentList.add(new FriendsFragment());
-        fragmentList.add(new SharesFragment());
         fragmentManager=getSupportFragmentManager();
     }
 }

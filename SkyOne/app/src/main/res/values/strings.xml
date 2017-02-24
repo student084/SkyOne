@@ -2,7 +2,7 @@
     <string name="app_name">SkyOne</string>
 
     <string name="words_in_login_button">登陆</string>
-    <string name="title_photos">照片</string>
-    <string name="title_friend">朋友</string>
-    <string name="title_shares">动态</string>
+    <string name="title_camera">相机</string>
+    <string name="title_temp">待传</string>
+    <string name="title_photos">云库</string>
 </resources>

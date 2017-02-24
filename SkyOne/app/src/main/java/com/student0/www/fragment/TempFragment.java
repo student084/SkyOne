@@ -13,11 +13,11 @@ import com.student0.www.skyone.R;
  * Created by willj on 2017/2/23.
  */
 
-public class SharesFragment extends Fragment {
+public class TempFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.shares, container, false);
+        View view = inflater.inflate(R.layout.temps, container, false);
         return view;
     }
 }

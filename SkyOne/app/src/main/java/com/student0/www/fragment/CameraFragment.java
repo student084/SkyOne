@@ -12,11 +12,16 @@ import com.student0.www.skyone.R;
  * Created by willj on 2017/2/23.
  */
 
-public class FriendsFragment extends Fragment {
+public class CameraFragment extends Fragment {
+
+    private static int REQUIRE_CAMERA = 1;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.friends, container, false);
+
+        View view = inflater.inflate(R.layout.camera, container, false);
+
         return view;
     }
 }

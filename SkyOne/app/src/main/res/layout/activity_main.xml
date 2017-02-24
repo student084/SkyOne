@@ -42,23 +42,23 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
+            android:text="@string/title_camera"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:text="@string/title_temp"
+            android:textSize="16sp"
+            android:textColor="#ffffff"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
             android:text="@string/title_photos"
-            android:textSize="16sp"
-            android:textColor="#ffffff"
-            android:gravity="center"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="@string/title_friend"
-            android:textSize="16sp"
-            android:textColor="#ffffff"
-            android:gravity="center"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"
-            android:text="@string/title_shares"
             android:textSize="16sp"
             android:textColor="#ffffff"
             android:gravity="center"/>
