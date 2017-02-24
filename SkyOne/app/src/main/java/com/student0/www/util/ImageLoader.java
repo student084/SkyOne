@@ -163,6 +163,29 @@ public class ImageLoader {
         //set a tag for imageView avoid pic find error land
         imageView.setTag(url);
 
+        //UIThread create
+
+        if(mUIHandler == null){
+            mUIHandler = new Handler(){
+                /**
+                 * 这里注意handleMessage中的不能直接使用path, imageView变量
+                 * 因为此时handleMessage中是靠线程自己获得消息异步处理
+                 * handleMessage相对loadImage来说是异步
+                 * */
+                @Override
+                public void handleMessage(Message msg) {
+                    PhotoHolder holder = (PhotoHolder)msg.obj;
+                    Bitmap bitmap = holder.bitmap;
+                    ImageView imageView = holder.imageView;
+                    String url = holder.url;
+                    //将path与getTag存储路径进行比较，排除复用的负面干扰
+                    //图片刷新
+                    if(imageView.getTag().toString().equals(url)){
+                        imageView.setImageBitmap(bitmap);
+                    }
+                }
+            };
+        }
         //Search bitmap from localCache at first
         Bitmap bm = getBitmapFromLruCache(url);
 
@@ -201,15 +224,16 @@ public class ImageLoader {
             try {
                 HttpURLConnection connection = (HttpURLConnection)url.openConnection();
                 is = new BufferedInputStream(connection.getInputStream());
-                //获取图片的大小，并且不把图片加载到内存中
-                BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inJustDecodeBounds = true;
-                BitmapFactory.decodeStream(is);
-                //设置压缩比例，压缩图片
-                options.inSampleSize = calculateInSampleSize(options, width, height);
-                //使用获得的InSampleSize再次解析图片
-
-                options.inJustDecodeBounds = false;//将图片加载到内存
+//                Bitmap internetBitmap = BitmapFactory.decodeStream(is);
+//                //获取图片的大小，并且不把图片加载到内存中
+//                BitmapFactory.Options options = new BitmapFactory.Options();
+//                options.inJustDecodeBounds = true;
+//                BitmapFactory.decodeStream(is);
+//                //设置压缩比例，压缩图片
+//                options.inSampleSize = calculateInSampleSize(options, width, height);
+//                //使用获得的InSampleSize再次解析图片
+//
+//                options.inJustDecodeBounds = false;//将图片加载到内存
                 Bitmap bitmap = null;
                 try{
                     bitmap = BitmapFactory.decodeStream(is);;
@@ -221,10 +245,11 @@ public class ImageLoader {
             } catch (IOException e) {
                 e.printStackTrace();
             }  finally {
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (is != null){
+                    try {
+                        is.close();
+                    } catch (IOException e) {
+                    }
                 }
             }
         } catch (MalformedURLException e) {
@@ -349,29 +374,6 @@ public class ImageLoader {
         message.obj = photoHolder;
         mUIHandler.sendMessage(message);
 
-        //UIThread create
-
-        if(mUIHandler == null){
-            mUIHandler = new Handler(){
-                /**
-                 * 这里注意handleMessage中的不能直接使用path, imageView变量
-                 * 因为此时handleMessage中是靠线程自己获得消息异步处理
-                 * handleMessage相对loadImage来说是异步
-                 * */
-                @Override
-                public void handleMessage(Message msg) {
-                   PhotoHolder holder = (PhotoHolder)msg.obj;
-                    Bitmap bitmap = holder.bitmap;
-                    ImageView imageView1 = holder.imageView;
-                    String url = holder.url;
-                    //将path与getTag存储路径进行比较，排除复用的负面干扰
-                    //图片刷新
-                    if(imageView.getTag().toString().equals(url)){
-                        imageView.setImageBitmap(bm);
-                    }
-                }
-            };
-        }
     }
 
 
