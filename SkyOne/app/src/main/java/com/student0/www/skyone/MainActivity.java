@@ -2,17 +2,20 @@ package com.student0.www.skyone;
 
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 
+import com.student0.www.Config;
 import com.student0.www.adapter.MyFragmentPagerAdapter;
 import com.student0.www.fragment.CameraFragment;
 import com.student0.www.fragment.PhotosFragment;
 import com.student0.www.fragment.TempFragment;
 import com.student0.www.view.ViewPagerIndicator;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +37,19 @@ public class MainActivity extends FragmentActivity {
         mAdapter = new MyFragmentPagerAdapter(fragmentManager, fragmentList);
         viewPager.setAdapter(mAdapter);
         initEvent();
+
+        //create
+        createSkyOneDir();
+    }
+
+    private void createSkyOneDir() {
+        String status = Environment.getExternalStorageState();
+        if (status.equals(Environment.MEDIA_MOUNTED)){
+            File dir = new File(Config.PHOTOS_DIR);
+            if (!dir.exists()){
+                dir.mkdir();
+            }
+        }
     }
 
     private void initEvent() {

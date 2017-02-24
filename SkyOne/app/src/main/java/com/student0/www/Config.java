@@ -5,10 +5,8 @@ package com.student0.www;
  */
 
 public class Config {
-    public final static String TABLE_PHOTOS = "table photos";
-    public final static String TABLE_FRIENDS  = "table camera";
-    public final static String TABLE_SHARES = "table temps";
-    public final static String BOUND_TITLE = "title";
-
+    public final static String PHOTOS_DIR = "/sdcard/skyone/";
     public final static int THREAD_COUNT = 5;
+
+
 }
