@@ -1,5 +1,6 @@
 package com.student0.www.holder;
 
+import android.graphics.Bitmap;
 import android.support.v4.app.LoaderManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -18,6 +19,8 @@ import com.student0.www.util.Type;
 public class PhotoHolder extends RecyclerView.ViewHolder{
 
     public ImageView imageView;
+    public Bitmap bitmap;
+    public String url;
 
     public PhotoHolder(View itemView) {
         super(itemView);
@@ -26,7 +29,8 @@ public class PhotoHolder extends RecyclerView.ViewHolder{
     }
 
     public void bindHolder(DataForm dataForm){
-        //ImageLoader.getInstance(Config.THREAD_COUNT, Type.LIFO).loadImages(dataForm.getData(), imageView);
-        imageView.setImageResource(R.mipmap.ic_launcher);
+        imageView.setImageDrawable(null);
+        ImageLoader.getInstance(Config.THREAD_COUNT, Type.LIFO).loadImages(dataForm.getData(), imageView);
+        ;
     }
 }
