@@ -19,32 +19,35 @@ public class SimulateData {
     private List<Photo> photoList5 = new ArrayList<>();
     private List<Photo> photoList6 = new ArrayList<>();
     private List<Photo> photoList7 = new ArrayList<>();
-    private String url1 = "http://img.mukewang.com/55237dcc0001128c06000338-300-170.jpg";
-    private String url2 = "http://img.mukewang.com/55249cf30001ae8a06000338-300-170.jpg";
+    private String url1 = "http://img.mukewang.com/55237dcc0001128c06000338.jpg";
+    private String url2 = "http://img.mukewang.com/55249cf30001ae8a06000338.jpg";
+    private String url3 = "http://img.mukewang.com/551de0570001134f06000338.jpg";
+    private String url4 = "http://img.mukewang.com/5518ecf20001cb4e06000338.jpg";
+    private String[] urls = {url1, url2, url3, url4};
     public SimulateData() {
 
         for (int i = 0; i < 2; i ++ ){
-            photoList1.add(new Photo(i+1, url1));
+            photoList1.add(new Photo(i+1, urls[i%4]));
         }
         perDatePhotosList.add(new PerDatePhotos(1, "2017-02-12", photoList1));
         for (int i = 0; i < 3; i ++ ){
-            photoList2.add(new Photo(i+1, url2 ));
+            photoList2.add(new Photo(i+1, urls[i%4] ));
         }
         perDatePhotosList.add(new PerDatePhotos(1, "2017-02-13", photoList2));
         for (int i = 0; i < 7; i ++ ){
-            photoList3.add(new Photo(i+1, url1 ));
+            photoList3.add(new Photo(i+1, urls[i%4] ));
         }
         perDatePhotosList.add(new PerDatePhotos(1, "2017-02-14", photoList3));
         for (int i = 0; i < 5; i ++ ){
-            photoList4.add(new Photo(i+1, url2));
+            photoList4.add(new Photo(i+1, urls[i%4]));
         }
         perDatePhotosList.add(new PerDatePhotos(1, "2017-02-15", photoList4));
         for (int i = 0; i < 9; i ++ ){
-            photoList5.add(new Photo(i+1, url1 ));
+            photoList5.add(new Photo(i+1, urls[i%4] ));
         }
         perDatePhotosList.add(new PerDatePhotos(1, "2017-02-16", photoList5));
         for (int i = 0; i < 1; i ++ ){
-            photoList6.add(new Photo(i+1, url2));
+            photoList6.add(new Photo(i+1, urls[i%4]));
         }
         perDatePhotosList.add(new PerDatePhotos(1, "2017-02-17", photoList6));
     }
