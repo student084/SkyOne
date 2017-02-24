@@ -1,12 +1,32 @@
 package com.student0.www.holder;
 
+import android.support.v4.app.LoaderManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
+
+import com.student0.www.Config;
+import com.student0.www.adapter.DataForm;
+import com.student0.www.skyone.R;
+import com.student0.www.util.ImageLoader;
+import com.student0.www.util.Type;
 
 /**
  * Created by willj on 2017/2/23.
  */
 
-public class PhotoHolder {
+public class PhotoHolder extends RecyclerView.ViewHolder{
 
     public ImageView imageView;
+
+    public PhotoHolder(View itemView) {
+        super(itemView);
+
+        imageView = (ImageView) itemView.findViewById(R.id.id_item_photo);
+    }
+
+    public void bindHolder(DataForm dataForm){
+        //ImageLoader.getInstance(Config.THREAD_COUNT, Type.LIFO).loadImages(dataForm.getData(), imageView);
+        imageView.setImageResource(R.mipmap.ic_launcher);
+    }
 }

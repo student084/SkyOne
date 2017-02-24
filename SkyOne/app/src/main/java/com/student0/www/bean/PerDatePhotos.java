@@ -28,7 +28,7 @@ public class PerDatePhotos {
         return batch;
     }
 
-    public String getData() {
+    public String getDate() {
         return date;
     }
 

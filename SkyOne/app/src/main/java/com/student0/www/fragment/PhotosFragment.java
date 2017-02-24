@@ -35,12 +35,34 @@ public class PhotosFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),1);
+
+        final GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),3);
+
         //Get the view of the fragment
         View view = inflater.inflate(R.layout.photos, container, false);
+
         //Get the instance of recycleView
         recyclerView = (RecyclerView)view.findViewById(R.id.recycle);
+
+
+        //分类设置换行情况
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+
+            //返回值为跨度值，及分裂数的倒数视为一个跨度值的单位
+            @Override
+            public int getSpanSize(int position) {
+                int type = recyclerView.getAdapter().getItemViewType(position);
+                if (type == MyRecycleViewAdapter.TYPE_DATE){
+                    //返回分列数*跨度值，即为占据一行
+                    return gridLayoutManager.getSpanCount();
+                }else{
+                    return 1;
+                }
+            }
+        });
+
         recyclerView.setLayoutManager(gridLayoutManager);
+
         //Add data to adapter ,so that the RecycleView haves pics and data to show instead of black
         //Data form is List<PerDataPhotos>
         //Init RecycleView's adapter
@@ -49,12 +71,14 @@ public class PhotosFragment extends Fragment {
         recyclerView.setAdapter(recycleViewAdapter);
         recycleViewAdapter.AddList(DPList);
         recycleViewAdapter.notifyDataSetChanged();
+
         //Add adapter to RecycleView, so the RecycleView can get and show the data
         return view;
     }
 
     private List<PerDatePhotos> initData() {
         List<PerDatePhotos> perDatePhotosList = new ArrayList<>();
+
         //PerDatePhotos(int batch, String data, List<Photo> photos)
         //Photo(int photoId, String resourceURL)
         perDatePhotosList = new SimulateData().getPerDatePhotosList();

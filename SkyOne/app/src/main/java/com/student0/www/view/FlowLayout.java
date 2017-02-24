@@ -194,9 +194,9 @@ public class FlowLayout extends ViewGroup {
         }
 
     }
-/*
-* 与当前ViewGroup对应的LayoutParams
-* */
+    /*
+    * 与当前ViewGroup对应的LayoutParams
+    * */
     @Override
     public LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new MarginLayoutParams(getContext(), attrs);
