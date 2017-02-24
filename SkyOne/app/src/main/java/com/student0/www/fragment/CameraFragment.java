@@ -46,7 +46,7 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback{
             String photoName = MyUtil.md5(curDate.toString());
             photoName =  photoName+ ".png";
 
-            String dir = Config.PHOTOS_DIR + photoName;
+            String dir = Config.PHOTOS_DIR + "/"+ photoName;
             File tempFile = new File(dir);
             try {
 
