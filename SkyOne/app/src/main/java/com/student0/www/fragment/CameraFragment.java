@@ -3,7 +3,6 @@ package com.student0.www.fragment;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,16 +14,13 @@ import android.widget.ImageButton;
 
 import com.student0.www.Config;
 import com.student0.www.skyone.R;
-import com.student0.www.util.MyUtil;
+import com.student0.www.util.MyMD5Util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by willj on 2017/2/23.
@@ -45,7 +41,7 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback{
         @Override
         public void onPictureTaken(byte[] data, Camera camera) {
             Date curDate = new Date(System.currentTimeMillis());
-            String photoName = MyUtil.md5(curDate.toString());
+            String photoName = MyMD5Util.md5(curDate.toString());
             photoName =  photoName+ ".png";
 
             String dir = Config.PHOTOS_DIR + "/"+ photoName;

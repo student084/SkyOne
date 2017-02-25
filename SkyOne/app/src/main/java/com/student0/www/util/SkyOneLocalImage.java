@@ -2,6 +2,7 @@ package com.student0.www.util;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
@@ -20,6 +21,8 @@ import java.util.concurrent.Semaphore;
  */
 
 public class SkyOneLocalImage {
+
+
     private static SkyOneLocalImage mInstance;
 
     /**
@@ -176,6 +179,15 @@ public class SkyOneLocalImage {
         return mInstance;
     }
 
+    //turn bitmap 90 degree
+
+    private Bitmap turn90d(Bitmap pic){
+        Bitmap bm;
+        Matrix matrix = new Matrix();
+        matrix.setRotate(90);
+        bm = Bitmap.createBitmap(pic, 0, 0 ,pic.getWidth(), pic.getHeight(), matrix,true);
+        return bm;
+    }
     /**
      * 核心方法
      * 根据path为imageView设置图片
@@ -216,6 +228,7 @@ public class SkyOneLocalImage {
 
                     //将path与getTag存储路径进行比较，排除复用的负面干扰
                     if(imageView.getTag().toString().equals(path)){
+                        bm = turn90d(bm);
                         imageView.setImageBitmap(bm);
                     }
 

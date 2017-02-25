@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
  * Created by willj on 2017/2/24.
  */
 
-public class MyUtil {
+public class MyMD5Util {
     public static final String md5(final String s) {
         final String MD5 = "MD5";
         try {

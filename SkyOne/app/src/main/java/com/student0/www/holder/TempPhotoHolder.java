@@ -8,4 +8,5 @@ import android.widget.ImageView;
 
 public class TempPhotoHolder {
     public ImageView imageView;
+    public String Uri;
 }
