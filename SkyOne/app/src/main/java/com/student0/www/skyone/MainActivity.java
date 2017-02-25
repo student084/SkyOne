@@ -1,6 +1,7 @@
 package com.student0.www.skyone;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
@@ -34,6 +35,8 @@ public class MainActivity extends FragmentActivity {
     private TempFragment tempFragment;
     private PhotosFragment photosFragment;
 
+    ProgressDialog mProgressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +47,7 @@ public class MainActivity extends FragmentActivity {
         mAdapter = new MyFragmentPagerAdapter(fragmentManager, fragmentList);
         viewPager.setAdapter(mAdapter);
         initEvent();
-
+        MyCache.setListCache();
         //create
         createSkyOneDir();
     }
@@ -75,8 +78,9 @@ public class MainActivity extends FragmentActivity {
             public void onPageSelected(int position) {
                 //Toast.makeText(MainActivity.this, position + "" , Toast.LENGTH_SHORT).show();
                 if (position == Config.TEMPS_FRAGMENT_POSITION_IN_VIEWPAGER){
-                    tempFragment.setPhotosName(Names());
+                    mProgressDialog = mProgressDialog.show(MainActivity.this,null, "Loading ...");
                     tempFragment.notifyView();
+                    mProgressDialog.dismiss();
                 }
             }
 
@@ -105,22 +109,5 @@ public class MainActivity extends FragmentActivity {
         fragmentManager=getSupportFragmentManager();
     }
 
-    public List<String> Names(){
-        List<String> names = new ArrayList<>();
-        if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-            Toast.makeText(MainActivity.this, "当前存储卡不可用", Toast.LENGTH_SHORT).show();
-            return null;
-        }
-        names = Arrays.asList(new File(Config.PHOTOS_DIR).list(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                if(name.endsWith(".jpg")
-                        || name.endsWith(".jpeg")
-                        ||name.endsWith(".png"))
-                    return true;
-                return false;
-            }
-        }));
-        return names;
-    }
+
 }

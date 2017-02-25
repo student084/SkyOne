@@ -10,6 +10,8 @@ import android.widget.ImageView;
 
 import com.student0.www.Config;
 import com.student0.www.holder.TempPhotoHolder;
+import com.student0.www.skyone.MainActivity;
+import com.student0.www.skyone.MyCache;
 import com.student0.www.skyone.R;
 import com.student0.www.util.SkyOneLocalImage;
 
@@ -31,9 +33,9 @@ public class TempPhotosAdapter extends BaseAdapter{
     private List<String> uploadPhotoList = new ArrayList<>();
 
 
-    public TempPhotosAdapter(Context context, List<String> datas){
+    public TempPhotosAdapter(Context context){
         dirPath = Config.PHOTOS_DIR;
-        photoNameList = datas;
+        photoNameList = MyCache.getPhotosName();
         layoutInflater = LayoutInflater.from(context);
     }
 
@@ -88,10 +90,6 @@ public class TempPhotosAdapter extends BaseAdapter{
         SkyOneLocalImage.getInstance(Config.THREAD_NUMBER_LOAD_LOCAL, SkyOneLocalImage.Type.LIFO).loadImage(dirPath + "/" + photoNameList.get(position), photoHolder.imageView);
 
         return convertView;
-    }
-
-    public void setPhotoNameList(List<String> nameList){
-        photoNameList = nameList;
     }
 
     //delete file

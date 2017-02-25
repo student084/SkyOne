@@ -51,7 +51,7 @@ public class TempFragment extends Fragment {
 
         initDatas();
 
-        photosAdapter = new TempPhotosAdapter(getContext(),photosName);
+        photosAdapter = new TempPhotosAdapter(getContext());
         //mProgressDialog = mProgressDialog.show(view.getContext(),null, "Loading ...");
         //mProgressDialog.dismiss();
         gridView.setAdapter(photosAdapter);
@@ -76,10 +76,6 @@ public class TempFragment extends Fragment {
         }));
     }
 
-
-    public void setPhotosName(List<String> names){
-        photosAdapter.setPhotoNameList(names);
-    }
 
     public void notifyView(){
         photosAdapter.notifyDataSetChanged();

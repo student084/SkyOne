@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.student0.www.bean.Photo;
 import com.student0.www.holder.PhotoHolder;
+import com.student0.www.skyone.MyCache;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -41,7 +42,6 @@ public class ImageLoader {
 
     private Handler mPoolTreadHandler;
     //Set a cache
-    private LruCache<String, Bitmap> localCache;
     /**
      * 任务列表维护任务
      * 供线程池取出任务
@@ -76,20 +76,6 @@ public class ImageLoader {
      * @param type 指定调度类型
      * */
     private ImageLoader(int threadCount, Type type) {
-        //Create a cache
-        int maxMemory = (int)Runtime.getRuntime().maxMemory();
-        int cacheMemory = maxMemory/6;
-
-
-        //init cache
-        localCache = new LruCache<String, Bitmap>(cacheMemory){
-            @Override
-            protected int sizeOf(String key, Bitmap value) {
-                //获取图片的大小
-                //每一行的字节数*行高度，所以单位为byte
-                return value.getRowBytes() * value.getHeight();
-            }
-        };
         //创建线程池
         mThreadPool = Executors.newFixedThreadPool(threadCount);
         //run a listen thread to deal with the threadPool's message
@@ -289,7 +275,7 @@ public class ImageLoader {
     private void addBitmapToLruCache(String path, Bitmap bm) {
         if(getBitmapFromLruCache(path) == null){
             if (bm != null){
-                localCache.put(path, bm);
+                MyCache.getInstance().getCache().put(path, bm);
             }
         }
     }
@@ -380,7 +366,7 @@ public class ImageLoader {
     //return a bitmap from cache if it's exist in cache
     //find by url
     private Bitmap getBitmapFromLruCache(String url) {
-        return localCache.get(url);
+        return MyCache.getInstance().getCache().get(url);
     }
 
 }

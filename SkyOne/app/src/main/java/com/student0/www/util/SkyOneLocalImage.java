@@ -11,6 +11,8 @@ import android.util.LruCache;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.student0.www.skyone.MyCache;
+
 import java.util.LinkedList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -24,12 +26,6 @@ public class SkyOneLocalImage {
 
 
     private static SkyOneLocalImage mInstance;
-
-    /**
-     * 图片缓存的核心对象
-     * **/
-
-    private LruCache<String, Bitmap> mLruCache;
 
     /***
      * 有个后台线程，后台线程负责获取任务，并将任务加入线程池，
@@ -134,20 +130,6 @@ public class SkyOneLocalImage {
          *启动后台轮询线程
          * */
         mPoolTread.start();
-        /**
-         * 获取应用的最大可用内存
-         * */
-        int maxMemory = (int)Runtime.getRuntime().maxMemory();
-        int cacheMemory = maxMemory/6;
-
-        mLruCache = new LruCache<String, Bitmap>(cacheMemory){
-            @Override
-            protected int sizeOf(String key, Bitmap value) {
-                //获取图片的大小
-                //每一行的字节数*行高度，所以单位为byte
-                return value.getRowBytes() * value.getHeight();
-            }
-        };
         //创建线程池
         mThreadPool = Executors.newFixedThreadPool(threadCount);
 
@@ -283,7 +265,7 @@ public class SkyOneLocalImage {
     private void addBitmapToLruCache(String path, Bitmap bm) {
         if(getBitmapFromLruCache(path) == null){
             if (bm != null){
-                mLruCache.put(path, bm);
+                MyCache.getInstance().getCache().put(path, bm);
             }
         }
     }
@@ -416,7 +398,7 @@ public class SkyOneLocalImage {
     }
     //根据path在缓存中获取bitmap
     private Bitmap getBitmapFromLruCache(String path) {
-        return mLruCache.get(path);
+        return MyCache.getInstance().getCache().get(path);
     }
 
     private class ImageBeanHolder{

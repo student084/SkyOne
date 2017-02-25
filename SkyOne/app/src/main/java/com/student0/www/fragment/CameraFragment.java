@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 
 import com.student0.www.Config;
+import com.student0.www.skyone.MainActivity;
+import com.student0.www.skyone.MyCache;
 import com.student0.www.skyone.R;
 import com.student0.www.util.MyMD5Util;
 
@@ -50,10 +52,9 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback{
 
                 FileOutputStream fileOutputStream = new FileOutputStream(tempFile);
                 fileOutputStream.write(data);
+                MyCache.addPhotoNameToList(photoName);
                 fileOutputStream.close();
                 camera.startPreview();
-
-
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
