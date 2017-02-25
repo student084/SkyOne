@@ -26,8 +26,8 @@ public class TempPhotosAdapter extends BaseAdapter{
     private LayoutInflater layoutInflater;
     private String dirPath;
 
-    public TempPhotosAdapter(Context context, List<String> datas, String dir){
-        dirPath = dir;
+    public TempPhotosAdapter(Context context, List<String> datas){
+        dirPath = Config.PHOTOS_DIR;
         photoNameList = datas;
         layoutInflater = LayoutInflater.from(context);
     }
@@ -59,9 +59,14 @@ public class TempPhotosAdapter extends BaseAdapter{
         }else{
             photoHolder = (TempPhotoHolder)convertView.getTag();
         }
+        photoHolder.imageView.setImageDrawable(null);
         String s = dirPath + "/" + photoNameList.get(position);
         System.out.println(dirPath + "/" + photoNameList.get(position));
         SkyOneLocalImage.getInstance(3, SkyOneLocalImage.Type.LIFO).loadImage(dirPath + "/" + photoNameList.get(position), photoHolder.imageView);
         return convertView;
+    }
+
+    public void setPhotoNameList(List<String> nameList){
+        photoNameList = nameList;
     }
 }

@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by willj on 2017/2/23.
@@ -37,6 +38,7 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback{
     private ImageButton imageButton;
 
     private Camera camera;
+
 
     //storage the pic to /skyone file
     private Camera.PictureCallback pictureCallback = new Camera.PictureCallback() {
@@ -54,6 +56,8 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback{
                 fileOutputStream.write(data);
                 fileOutputStream.close();
                 camera.startPreview();
+
+
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -172,4 +176,7 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback{
     public void surfaceDestroyed(SurfaceHolder holder) {
         releaseCamera();
     }
+
+
+
 }

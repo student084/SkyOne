@@ -1,5 +1,6 @@
 package com.student0.www.fragment;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
@@ -16,6 +17,7 @@ import com.student0.www.skyone.R;
 
 import java.io.File;
 import java.io.FilenameFilter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,17 +31,34 @@ public class TempFragment extends Fragment {
     private File currentDir;
     private List<String> photosName;
     private TempPhotosAdapter photosAdapter;
+    private View view;
+    //ProgressDialog mProgressDialog;
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.temps, container, false);
+        view = inflater.inflate(R.layout.temps, container, false);
         gridView = (GridView) view.findViewById(R.id.id_gridView);
+
         initDatas();
+
+        photosAdapter = new TempPhotosAdapter(getContext(),photosName);
+        //mProgressDialog = mProgressDialog.show(view.getContext(),null, "Loading ...");
+        //mProgressDialog.dismiss();
+        gridView.setAdapter(photosAdapter);
         return view;
     }
 
-    private void initDatas(){
+    public void initDatas(){
         if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
             Toast.makeText(getContext(), "当前存储卡不可用", Toast.LENGTH_SHORT).show();
             return;
@@ -55,7 +74,14 @@ public class TempFragment extends Fragment {
                 return false;
             }
         }));
-        photosAdapter = new TempPhotosAdapter(getContext(), photosName, currentDir.getAbsolutePath());
-        gridView.setAdapter(photosAdapter);
+    }
+
+
+    public void setPhotosName(List<String> names){
+        photosAdapter.setPhotoNameList(names);
+    }
+
+    public void notifyView(){
+        photosAdapter.notifyDataSetChanged();
     }
 }
