@@ -9,17 +9,13 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.student0.www.Config;
-import com.student0.www.fragment.TempFragment;
 import com.student0.www.holder.TempPhotoHolder;
 import com.student0.www.skyone.AppList;
-import com.student0.www.skyone.MainActivity;
 import com.student0.www.skyone.MyCache;
 import com.student0.www.skyone.R;
 import com.student0.www.util.SkyOneLocalImage;
-import com.student0.www.util.UpLoadPhotos;
+import com.student0.www.util.Upload;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -81,7 +77,7 @@ public class LocalPhotosRecycleViewAdapter extends BaseAdapter{
                 //Add  path
                 AppList.select_photos_wait_upload.add(finalPhotoHolder.Uri);
                 finalPhotoHolder.imageView.setColorFilter(Color.parseColor("#77000000"));
-                UpLoadPhotos.getInstance().sendMessageToUpload();
+                Upload.getInstance().addTak(finalPhotoHolder.Uri);
 //                MainActivity.refreshTempFragment();
                 return false;
             }

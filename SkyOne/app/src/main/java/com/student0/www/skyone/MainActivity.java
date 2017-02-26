@@ -8,20 +8,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
-import android.widget.Toast;
 
 import com.student0.www.Config;
 import com.student0.www.adapter.MyFragmentPagerAdapter;
 import com.student0.www.fragment.CameraFragment;
 import com.student0.www.fragment.PhotosFragment;
 import com.student0.www.fragment.TempFragment;
-import com.student0.www.util.UpLoadPhotos;
 import com.student0.www.view.ViewPagerIndicator;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends FragmentActivity {
@@ -52,7 +48,6 @@ public class MainActivity extends FragmentActivity {
         //create file dir so the photo can storage and App can read photo
         createSkyOneDir();
         //in this instance the pic auto-upload is List-choose is not empty
-        UpLoadPhotos.getInstance();
     }
 
     private void createSkyOneDir() {
