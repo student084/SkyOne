@@ -33,3 +33,12 @@ SkyOne is not just a dream.
 <li>JDBC + Filter + Servlet + Bean + DAO + Imp</li>
 <li>内存读写</li>
 </ul>
+<h2>界面设计：</h2>
+<ul>
+<li>登陆页<img src="/SkyOne/readme_pic/login.jpg"></li>
+<li>云相册页<img src="/SkyOne/readme_pic/photos.jpg"></li>
+<li>分享页<img src="/SkyOne/readme_pic/shares.jpg"></li>
+<li>相机页<img src="/SkyOne/readme_pic/camer.jpg"></li>
+<li>进度页<img src="/SkyOne/readme_pic/timer.jpg"></li>
+</ul>
+
