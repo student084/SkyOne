@@ -1,6 +1,5 @@
 package com.student0.www.fragment;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
@@ -12,12 +11,11 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 import com.student0.www.Config;
-import com.student0.www.adapter.TempPhotosAdapter;
+import com.student0.www.adapter.LocalPhotosRecycleViewAdapter;
 import com.student0.www.skyone.R;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -30,7 +28,7 @@ public class TempFragment extends Fragment {
     private GridView gridView;
     private File currentDir;
     private List<String> photosName;
-    private TempPhotosAdapter photosAdapter;
+    private LocalPhotosRecycleViewAdapter photosAdapter;
     private View view;
     //ProgressDialog mProgressDialog;
     @Override
@@ -51,7 +49,7 @@ public class TempFragment extends Fragment {
 
         initDatas();
 
-        photosAdapter = new TempPhotosAdapter(getContext());
+        photosAdapter = new LocalPhotosRecycleViewAdapter(getContext());
         //mProgressDialog = mProgressDialog.show(view.getContext(),null, "Loading ...");
         //mProgressDialog.dismiss();
         gridView.setAdapter(photosAdapter);

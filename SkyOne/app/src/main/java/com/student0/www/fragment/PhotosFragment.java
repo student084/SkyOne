@@ -10,9 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.student0.www.SimulateData;
-import com.student0.www.adapter.MyRecycleViewAdapter;
+import com.student0.www.adapter.InterPhotosRecycleViewAdapter;
 import com.student0.www.bean.PerDatePhotos;
-import com.student0.www.bean.Photo;
 import com.student0.www.skyone.R;
 
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public class PhotosFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private static List<PerDatePhotos> DPList = new ArrayList<PerDatePhotos>();
-    private MyRecycleViewAdapter recycleViewAdapter;
+    private InterPhotosRecycleViewAdapter recycleViewAdapter;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +51,7 @@ public class PhotosFragment extends Fragment {
             @Override
             public int getSpanSize(int position) {
                 int type = recyclerView.getAdapter().getItemViewType(position);
-                if (type == MyRecycleViewAdapter.TYPE_DATE){
+                if (type == InterPhotosRecycleViewAdapter.TYPE_DATE){
                     //返回分列数*跨度值，即为占据一行
                     return gridLayoutManager.getSpanCount();
                 }else{
@@ -67,7 +66,7 @@ public class PhotosFragment extends Fragment {
         //Data form is List<PerDataPhotos>
         //Init RecycleView's adapter
         DPList = initData();
-        recycleViewAdapter = new MyRecycleViewAdapter(getActivity());
+        recycleViewAdapter = new InterPhotosRecycleViewAdapter(getActivity());
         recyclerView.setAdapter(recycleViewAdapter);
         recycleViewAdapter.AddList(DPList);
         recycleViewAdapter.notifyDataSetChanged();
@@ -90,4 +89,5 @@ public class PhotosFragment extends Fragment {
     public void onPause() {
         super.onPause();
     }
+
 }

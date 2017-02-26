@@ -5,11 +5,13 @@ import android.hardware.Camera;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 
 import com.student0.www.Config;
@@ -94,14 +96,17 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback{
     }
 
     private void takePhoto() {
+        DisplayMetrics displayMetrics = getContext().getResources().getDisplayMetrics();
+
         Camera.Parameters parameters = camera.getParameters();
         parameters.setPreviewFormat(ImageFormat.JPEG);
-        parameters.setPictureSize(800 , 400);
+        parameters.setPictureSize(displayMetrics.widthPixels ,displayMetrics.heightPixels);
         parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
         camera.autoFocus(new Camera.AutoFocusCallback(){
             @Override
             public void onAutoFocus(boolean success, Camera camera) {
                 if (success){
+                   MainActivity.refreshTempFragment();
                     camera.takePicture(null, null,pictureCallback );
                 }
             }
@@ -142,7 +147,7 @@ public class CameraFragment extends Fragment implements SurfaceHolder.Callback{
     /**
      * Release the resource
      * */
-    private void releaseCamera(){
+    public void releaseCamera(){
         if (camera != null){
             //release callback
             camera.setPreviewCallback(null);

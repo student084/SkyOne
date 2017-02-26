@@ -9,11 +9,14 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.student0.www.Config;
+import com.student0.www.fragment.TempFragment;
 import com.student0.www.holder.TempPhotoHolder;
+import com.student0.www.skyone.AppList;
 import com.student0.www.skyone.MainActivity;
 import com.student0.www.skyone.MyCache;
 import com.student0.www.skyone.R;
 import com.student0.www.util.SkyOneLocalImage;
+import com.student0.www.util.UpLoadPhotos;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -23,17 +26,14 @@ import java.util.List;
  * Created by willj on 2017/2/25.
  */
 
-public class TempPhotosAdapter extends BaseAdapter{
+public class LocalPhotosRecycleViewAdapter extends BaseAdapter{
 
 
     private List<String> photoNameList;
     private LayoutInflater layoutInflater;
     private String dirPath;
 
-    private List<String> uploadPhotoList = new ArrayList<>();
-
-
-    public TempPhotosAdapter(Context context){
+    public LocalPhotosRecycleViewAdapter(Context context){
         dirPath = Config.PHOTOS_DIR;
         photoNameList = MyCache.getPhotosName();
         layoutInflater = LayoutInflater.from(context);
@@ -78,25 +78,25 @@ public class TempPhotosAdapter extends BaseAdapter{
         photoHolder.imageView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                uploadPhotoList.add(finalPhotoHolder.Uri);
+                //Add  path
+                AppList.select_photos_wait_upload.add(finalPhotoHolder.Uri);
                 finalPhotoHolder.imageView.setColorFilter(Color.parseColor("#77000000"));
-                System.out.println("------------------------");
-                deleteTempPhoto(new File(s));
+                UpLoadPhotos.getInstance().sendMessageToUpload();
+//                MainActivity.refreshTempFragment();
                 return false;
             }
         });
         //System.out.println(dirPath + "/" + photoNameList.get(position));
         //
+        if (AppList.select_photos_wait_upload.contains(finalPhotoHolder.Uri)){
+            finalPhotoHolder.imageView.setColorFilter(Color.parseColor("#77000000"));
+        }else {
+            finalPhotoHolder.imageView.setColorFilter(Color.parseColor("#00000000"));
+        }
         SkyOneLocalImage.getInstance(Config.THREAD_NUMBER_LOAD_LOCAL, SkyOneLocalImage.Type.LIFO).loadImage(dirPath + "/" + photoNameList.get(position), photoHolder.imageView);
 
         return convertView;
     }
 
-    //delete file
 
-    public void deleteTempPhoto(File photo){
-        if (photo.exists() && photo.isFile()){
-            photo.delete();
-        }
-    }
 }

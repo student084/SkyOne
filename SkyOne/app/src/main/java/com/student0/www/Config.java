@@ -10,7 +10,7 @@ import android.util.LruCache;
 public class Config {
     public final static String PHOTOS_DIR = "/sdcard/skyone";
     public final static int THREAD_NUMBER_URL_LOAD= 3;
-    public final static int THREAD_NUMBER_LOAD_LOCAL = 1;
+    public final static int THREAD_NUMBER_LOAD_LOCAL = 2;
 
 
 

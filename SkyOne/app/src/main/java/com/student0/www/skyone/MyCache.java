@@ -78,6 +78,10 @@ public class MyCache {
         photosName.add(photoName);
     }
 
+    public static void deletePhotoName(String photoName){
+        photosName.remove(photoName);
+    }
+
     public static List<String> getPhotosName(){
         return photosName;
     }

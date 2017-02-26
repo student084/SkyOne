@@ -15,6 +15,7 @@ import com.student0.www.adapter.MyFragmentPagerAdapter;
 import com.student0.www.fragment.CameraFragment;
 import com.student0.www.fragment.PhotosFragment;
 import com.student0.www.fragment.TempFragment;
+import com.student0.www.util.UpLoadPhotos;
 import com.student0.www.view.ViewPagerIndicator;
 
 import java.io.File;
@@ -32,7 +33,7 @@ public class MainActivity extends FragmentActivity {
     private FragmentManager fragmentManager;
 
     private CameraFragment cameraFragment;
-    private TempFragment tempFragment;
+    private static TempFragment tempFragment;
     private PhotosFragment photosFragment;
 
     ProgressDialog mProgressDialog;
@@ -48,8 +49,10 @@ public class MainActivity extends FragmentActivity {
         viewPager.setAdapter(mAdapter);
         initEvent();
         MyCache.setListCache();
-        //create
+        //create file dir so the photo can storage and App can read photo
         createSkyOneDir();
+        //in this instance the pic auto-upload is List-choose is not empty
+        UpLoadPhotos.getInstance();
     }
 
     private void createSkyOneDir() {
@@ -78,9 +81,9 @@ public class MainActivity extends FragmentActivity {
             public void onPageSelected(int position) {
                 //Toast.makeText(MainActivity.this, position + "" , Toast.LENGTH_SHORT).show();
                 if (position == Config.TEMPS_FRAGMENT_POSITION_IN_VIEWPAGER){
-                    mProgressDialog = mProgressDialog.show(MainActivity.this,null, "Loading ...");
-                    tempFragment.notifyView();
-                    mProgressDialog.dismiss();
+                    //mProgressDialog = mProgressDialog.show(MainActivity.this,null, "Loading ...");
+                   // MainActivity.refreshTempFragment();
+                   // mProgressDialog.dismiss();
                 }
             }
 
@@ -109,5 +112,10 @@ public class MainActivity extends FragmentActivity {
         fragmentManager=getSupportFragmentManager();
     }
 
+    public  static void  refreshTempFragment(){
+           synchronized (tempFragment){
+               tempFragment.notifyView();
+           }
+    }
 
 }

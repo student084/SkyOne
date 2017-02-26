@@ -18,7 +18,7 @@ import java.util.List;
  * Created by willj on 2017/2/23.
  */
 
-public class MyRecycleViewAdapter extends RecyclerView.Adapter {
+public class InterPhotosRecycleViewAdapter extends RecyclerView.Adapter {
 
     private LayoutInflater layoutInflater;
 
@@ -30,7 +30,7 @@ public class MyRecycleViewAdapter extends RecyclerView.Adapter {
 
     //DataForm's Position in dataFormList
     private static int position;
-    public MyRecycleViewAdapter(Context context) {
+    public InterPhotosRecycleViewAdapter(Context context) {
         this.layoutInflater = LayoutInflater.from(context);
     }
 
