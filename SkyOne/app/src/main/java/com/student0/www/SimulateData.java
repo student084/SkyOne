@@ -19,7 +19,7 @@ public class SimulateData {
     private List<Photo> photoList5 = new ArrayList<>();
     private List<Photo> photoList6 = new ArrayList<>();
     private List<Photo> photoList7 = new ArrayList<>();
-    private String url1 = "http://img.mukewang.com/55237dcc0001128c06000338.jpg";
+    private String url1 = "http://10.60.0.164:8080/SkyOne/images/4e7ccd06ca4b7e47545a792e3fabcf31.png";
     private String url2 = "http://img.mukewang.com/55249cf30001ae8a06000338.jpg";
     private String url3 = "http://img.mukewang.com/551de0570001134f06000338.jpg";
     private String url4 = "http://img.mukewang.com/5518ecf20001cb4e06000338.jpg";

@@ -1,0 +1,7 @@
+package com.amaker.res;
+
+public class Error {
+	
+	public final static String DATABASE_CONN_ERROR = "fail to connect dataBase";
+	
+}

@@ -1,0 +1,30 @@
+package com.amaker.dao.impl;
+
+import java.util.ArrayList;
+
+import com.amaker.bean.User;
+import com.amaker.dao.UserDao;
+
+public class UserDaoImpl implements UserDao {
+
+	public void add(User user) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void delete(User user) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void modify(int id, User newU) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public ArrayList<User> List() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

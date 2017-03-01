@@ -133,13 +133,5 @@
 //
 //    //delete file
 //
-//    public void deleteTempPhoto(File photo){
-//        if (photo.exists() && photo.isFile()){
-//            photo.delete();
-//        }
-//        if (photo.exists() & photo.isFile()){
-//            System.out.println(photo.toString());
-//        }
-//    }
 //
 //}

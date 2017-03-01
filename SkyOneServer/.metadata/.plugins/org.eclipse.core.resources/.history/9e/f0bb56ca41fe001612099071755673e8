@@ -1,0 +1,125 @@
+package com.amaker.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
+
+import com.amaker.bean.User;
+import com.amaker.dao.UserDao;
+import com.amaker.util.DBUtil;
+
+public class UserDaoImpl implements UserDao {
+
+	public void add(User user) {
+		
+		DBUtil dbUtil = new DBUtil();
+		
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "insert into usertable(phone, password) values(?, ?)";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user.getPhone());
+			pstmt.setString(2, user.getPassword());
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			dbUtil.CloseConnection(conn);
+			dbUtil = null;
+		}
+	}
+
+	public void delete(int id) {
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "delete from usertable where id = ?";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			dbUtil.CloseConnection(conn);
+			dbUtil = null;
+		}
+		
+		
+	}
+
+	public void modify(int id, User newUser) {
+		
+		DBUtil dbUtil = new DBUtil();
+		
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "update usertable set phone=?, password=? where id=?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, newUser.getPhone());
+			pstmt.setString(2, newUser.getPassword());
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}finally{
+			dbUtil.CloseConnection(conn);
+			dbUtil = null;
+		}
+		
+		
+	}
+
+	@SuppressWarnings("null")
+	public ArrayList<User> List() {
+		
+		ArrayList<User> result = null;
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "select * from usertable ";
+		try {
+			Statement pstmt = conn.createStatement();
+			
+			ResultSet rs = pstmt.executeQuery(sql);
+			
+			while(rs.next()){
+				
+				int id = rs.getInt(1);
+				String phone = rs.getString(2);
+				String password = rs.getString(3);
+				
+				User u = new User(id, phone, password);
+				result.add(u);		
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	public User searchUser(String phone, String password){
+		DBUtil util = new DBUtil();
+		Connection conn = util.getConnection();
+		String sql = "select * from usertable where phone = ? and password = ?";
+		
+		PreparedStatement pstmp = conn.prepareStatement(sql);
+		
+		
+		return null;
+	}
+
+}

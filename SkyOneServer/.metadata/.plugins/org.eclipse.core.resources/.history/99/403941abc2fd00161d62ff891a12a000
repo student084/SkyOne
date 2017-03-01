@@ -1,0 +1,51 @@
+package com.amaker.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
+
+import com.amaker.bean.User;
+import com.amaker.dao.UserDao;
+import com.amaker.util.DBUtil;
+
+public class UserDaoImpl implements UserDao {
+
+	public void add(User user) {
+		
+		DBUtil dbUtil = new DBUtil();
+		
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "insert into usertable(phone, password) values(?, ?)";
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, user.getPhone());
+			pstmt.setString(2, user.getPassword());
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			dbUtil.CloseConnection(conn);
+			dbUtil = null;
+		}
+	}
+
+	public void delete(int id) {
+		
+		
+	}
+
+	public void modify(int id, User newU) {
+
+	}
+
+	public ArrayList<User> List() {
+	
+		return null;
+	}
+
+}

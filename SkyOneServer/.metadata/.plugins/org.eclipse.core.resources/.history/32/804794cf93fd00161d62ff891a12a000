@@ -1,0 +1,31 @@
+package com.amaker.dao.impl;
+
+import java.sql.Connection;
+import java.util.ArrayList;
+
+import com.amaker.bean.User;
+import com.amaker.dao.UserDao;
+
+public class UserDaoImpl implements UserDao {
+
+	public void add(User user) {
+		
+		
+
+	}
+
+	public void delete(User user) {
+		
+
+	}
+
+	public void modify(int id, User newU) {
+
+	}
+
+	public ArrayList<User> List() {
+	
+		return null;
+	}
+
+}

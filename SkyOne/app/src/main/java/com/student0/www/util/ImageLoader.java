@@ -15,6 +15,7 @@ import com.student0.www.holder.PhotoHolder;
 import com.student0.www.skyone.MyCache;
 
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -210,19 +211,17 @@ public class ImageLoader {
             try {
                 HttpURLConnection connection = (HttpURLConnection)url.openConnection();
                 is = new BufferedInputStream(connection.getInputStream());
-//                Bitmap internetBitmap = BitmapFactory.decodeStream(is);
-//                //获取图片的大小，并且不把图片加载到内存中
-//                BitmapFactory.Options options = new BitmapFactory.Options();
-//                options.inJustDecodeBounds = true;
-//                BitmapFactory.decodeStream(is);
-//                //设置压缩比例，压缩图片
-//                options.inSampleSize = calculateInSampleSize(options, width, height);
-//                //使用获得的InSampleSize再次解析图片
-//
-//                options.inJustDecodeBounds = false;//将图片加载到内存
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inJustDecodeBounds = true;
+                BitmapFactory.decodeStream(is, null,options);
+                options.inSampleSize = calculateInSampleSize(options,width, height);
+                options.inJustDecodeBounds = false;
+                is.close();
                 Bitmap bitmap = null;
+                HttpURLConnection connection1 = (HttpURLConnection)url.openConnection();
+                is = new BufferedInputStream(connection1.getInputStream());
                 try{
-                    bitmap = BitmapFactory.decodeStream(is);;
+                    bitmap = BitmapFactory.decodeStream(is, null,options);;
                 }catch (OutOfMemoryError e){
                     //
                 }

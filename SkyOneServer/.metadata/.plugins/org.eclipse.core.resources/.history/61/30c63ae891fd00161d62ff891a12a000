@@ -1,0 +1,7 @@
+package com.amaker.com.res;
+
+public class MyConfig {
+
+	public final static String CHAR_SET = "gbk";
+	
+}

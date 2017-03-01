@@ -16,21 +16,22 @@ SkyOne is not just a dream.
 </ul>
 </li>
 </ul>
-<h2>前台内容涉及：</h2>
+<h2>APP内容涉及：</h2>
 <hr>
 <ul>
 <li>基本控件及布局</li>
-<li>RecycleView、GridView + Holder + Adapter</li>
-<li>基础的画笔绘图</li>
+<li> Holder</li>
+<li>简单画笔绘图</li>
 <li>系统相机调用</li>
 <li>存储卡读写</li>
 <li>网络上传、下载，包含：分别用OkHttp与HttpURLConnection实现</li>
 <li>多线程：Handler + Loop + Message框架</li>
-
+</ul>
 <h2>后台内容涉及：</h2>
 <hr>
 <ul>
-<li>JDBC + Filter + Servlet + Bean + DAO + Imp</li>
+<li>先自己慢慢实现，再谈框架</li>
+<li>JDBC + Filter + Servlet</li>
 <li>内存读写</li>
 </ul>
 <h2>界面设计：</h2>

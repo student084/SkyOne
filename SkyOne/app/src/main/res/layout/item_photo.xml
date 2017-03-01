@@ -6,7 +6,7 @@
     android:padding="2dp">
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="260px"
         android:scaleType="centerCrop"
         android:id="@+id/id_item_photo"
         tools:ignore="ContentDescription" />

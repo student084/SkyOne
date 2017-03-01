@@ -1,0 +1,5 @@
+package com.amaker.bean;
+
+public class User {
+
+}

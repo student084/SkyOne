@@ -38,6 +38,7 @@ public class Upload {
 
     private Semaphore loopThreadHandleSemaphore = new Semaphore(0);
 
+
     private Upload(){
         initData();
     }
@@ -120,10 +121,19 @@ public class Upload {
             e.printStackTrace();
         }
         if (response != null) {
+            deleteTempPhoto(new File(uri));
             return true;
         };
         //System.out.println(response.body().toString());
 
         return false;
+    }
+    public void deleteTempPhoto(File photo){
+        if (photo.exists() && photo.isFile()){
+            photo.delete();
+        }
+        if (photo.exists() & photo.isFile()){
+            System.out.println(photo.toString());
+        }
     }
 }

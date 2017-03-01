@@ -1,0 +1,6 @@
+package com.amaker.dao.impl;
+
+public interface User {
+
+	public void add
+}

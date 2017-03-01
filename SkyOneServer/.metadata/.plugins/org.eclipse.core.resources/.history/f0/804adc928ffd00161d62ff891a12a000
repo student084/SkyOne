@@ -1,0 +1,5 @@
+package com.amaker.dao.impl;
+
+public class User {
+
+}
